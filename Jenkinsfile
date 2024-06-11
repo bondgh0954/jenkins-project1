@@ -18,7 +18,7 @@ pipeline{
       steps{
         script{
           echo 'building docker image from the application'
-          withCredendials([usernamePassword(credentialsId:'dockerhub-credentials',usernameVariable:'USERNAME',passwordVariable:'PASSWORD')]){
+          withCredentials([usernamePassword(credentialsId:'dockerhub-credentials',usernameVariable:'USERNAME',passwordVariable:'PASSWORD')]){
             sh 'docker build -t nanaot/java-app:1.9 .'
             sh "echo $PASSWORD |docker login -u $USERNAME --password-stdin"
             sh 'docker push nanaot/java-app:1.9'
