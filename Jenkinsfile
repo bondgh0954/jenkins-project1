@@ -1,3 +1,5 @@
+#!/user/bin/env groovy
+@Library('project-shared-library')
 def gv
 pipeline{
 
@@ -17,14 +19,16 @@ pipeline{
     stage('build jar'){
       steps{
         script{
-          gv.buildJar()
+          buildJar()
         }
       }
     }
     stage('build image'){
       steps{
         script{
-          gv.buildImage()
+          buildImage 'nanaot/java-app:5.5'
+          dockerLogin()
+          dockerPush 'nanaot/java-app:5.5'
         }
       }
     }
