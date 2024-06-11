@@ -23,7 +23,7 @@ pipeline{
         }
       }
     }
-    stage('build image'){
+    stage('build Image'){
       steps{
         script{
           buildImage 'nanaot/java-app:5.5'
